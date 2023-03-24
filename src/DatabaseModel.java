@@ -1,17 +1,21 @@
 import javax.swing.*;
 import java.sql.*;
 
-public class DatabaseExample {
+public class DatabaseModel {
     public static void main(String[] args) {
         Connection conn = null;
-        String user = "magnus";
-        JPasswordField pf = new JPasswordField();
-        JOptionPane.showConfirmDialog(null, pf, "password?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-        String password = new String(pf.getPassword());
+        String user = "te20";
+
+        DatabaseModel m;
+        DatabaseView v;
+
+       JPasswordField pf = new JPasswordField();
+       JOptionPane.showConfirmDialog(null, pf, "password?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+       String password = new String(pf.getPassword());
 
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bookshop? "+
-                    "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC",user,password);
+            conn = DriverManager.getConnection("jdbc:mysql://db.umea-ntig.se:3306/te20? "+
+                    "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", user, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -19,7 +23,7 @@ public class DatabaseExample {
 
         try {
             Statement stmt = conn.createStatement();
-            String SQLQuery = "SELECT * FROM book";
+            String SQLQuery = "SELECT * FROM tb02forum";
             ResultSet result = stmt.executeQuery(SQLQuery);
 
             ResultSetMetaData metadata = result.getMetaData();
@@ -32,10 +36,9 @@ public class DatabaseExample {
             while (result.next()) {
                 String output = "";
                 output += result.getInt("id") + ", " +
-                        result.getString("title") + ", " +
-                        result.getString("author") + ", " +
-                        result.getDouble("price") + ", " +
-                        result.getInt("quantity");
+                        result.getString("createdAt") + ", " +
+                        result.getString("title") + ", Content: " +
+                        result.getString("content");
                 System.out.println(output);
             }
 

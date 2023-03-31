@@ -1,4 +1,8 @@
+package DatabaseController;
+
 import javax.swing.*;
+import DatabaseView.*;
+import DatabaseModel.*;
 
 public class DatabaseController {
     private DatabaseModel m;

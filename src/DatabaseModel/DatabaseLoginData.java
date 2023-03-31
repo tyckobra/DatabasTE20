@@ -1,3 +1,5 @@
+package DatabaseModel;
+
 public class DatabaseLoginData {
     static String user = "te20";
     static String password = "HeZs7Ge7evA2";

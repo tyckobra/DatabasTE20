@@ -1,3 +1,5 @@
+package DatabaseView;
+
 import javax.swing.*;
 
 public class DatabaseView {

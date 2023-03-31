@@ -1,5 +1,8 @@
+package DatabaseModel;
+
 import javax.swing.*;
 import java.sql.*;
+import DatabaseView.*;
 
 public class DatabaseModel {
     public static void main(String[] args) {
@@ -24,15 +27,34 @@ public class DatabaseModel {
 
         String SQLQuery;
         SQLQuery = "SELECT * FROM tb02users";
-        String User = new String();
-        String UserPassword = new String();
+        JTextField User = new JTextField();
+        JPasswordField UserPassword = new JPasswordField();
         JOptionPane.showConfirmDialog(null, User, "Username?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         JOptionPane.showConfirmDialog(null, UserPassword, "Password?", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
+
+
         try {
-            if (User == "") UserPassword = "";{ return("Enter Username and Passworn");}
-                else if ()
+            if (User.length == 0,  UserPassword.length == 0){
+                return("Insert username and password");
             }
+            else if (User.length == 0) {
+                return("Insert username");
+            } else if (UserPassword == 0) {
+                return("Insert password");
+            } else if (User & UserPassword match) {
+                try {
+                    conn = DriverManager.getConnection("jdbc:mysql://db.umea-ntig.se:3306/te20? " +
+                            "allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC", User, UserPassword);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } else {
+                    return null;
+                }
+            }
+        }
+
+        try {
             Statement stmt = conn.createStatement();
             SQLQuery = "SELECT * FROM tb02forum";
             ResultSet result = stmt.executeQuery(SQLQuery);
